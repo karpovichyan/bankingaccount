@@ -9,28 +9,20 @@ SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE =
         'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema bankingaccount
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema bankingaccount
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8;
-USE `mydb`;
-
--- -----------------------------------------------------
--- Table `mydb`.`table1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`table1`
-(
-)
-    ENGINE = InnoDB;
+CREATE SCHEMA IF NOT EXISTS `bankingaccount` DEFAULT CHARACTER SET utf8;
+USE `bankingaccount`;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user_info`
+-- Table `bankingaccount`.`user_info`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user_info`
+CREATE TABLE IF NOT EXISTS `bankingaccount`.`user_info`
 (
     `id`         INT         NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(45) NOT NULL,
@@ -41,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user_info`
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user`
+-- Table `bankingaccount`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user`
+CREATE TABLE IF NOT EXISTS `bankingaccount`.`user`
 (
     `id`           INT         NOT NULL AUTO_INCREMENT,
     `email`        VARCHAR(45) NOT NULL,
@@ -53,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user`
     INDEX `fk_user_user_info_idx` (`user_info_id` ASC) VISIBLE,
     CONSTRAINT `fk_user_user_info`
         FOREIGN KEY (`user_info_id`)
-            REFERENCES `mydb`.`user_info` (`id`)
+            REFERENCES `bankingaccount`.`user_info` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
@@ -61,9 +53,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user`
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`transaction_history`
+-- Table `bankingaccount`.`transaction_history`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`transaction_history`
+CREATE TABLE IF NOT EXISTS `bankingaccount`.`transaction_history`
 (
     `id`     INT            NOT NULL AUTO_INCREMENT,
     `from`   VARCHAR(16)    NOT NULL,
@@ -76,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`transaction_history`
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`bank_account`
+-- Table `bankingaccount`.`bank_account`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`bank_account`
+CREATE TABLE IF NOT EXISTS `bankingaccount`.`bank_account`
 (
     `id`                     INT            NOT NULL AUTO_INCREMENT,
     `balance`                DECIMAL(15, 2) NOT NULL,
@@ -91,12 +83,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`bank_account`
     INDEX `fk_bank_account_transaction_history1_idx` (`transaction_history_id` ASC) VISIBLE,
     CONSTRAINT `fk_bank_account_user1`
         FOREIGN KEY (`user_id`, `user_user_info_id`)
-            REFERENCES `mydb`.`user` (`id`, `user_info_id`)
+            REFERENCES `bankingaccount`.`user` (`id`, `user_info_id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `fk_bank_account_transaction_history1`
         FOREIGN KEY (`transaction_history_id`)
-            REFERENCES `mydb`.`transaction_history` (`id`)
+            REFERENCES `bankingaccount`.`transaction_history` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
@@ -104,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`bank_account`
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`cards`
+-- Table `bankingaccount`.`cards`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`cards`
+CREATE TABLE IF NOT EXISTS `bankingaccount`.`cards`
 (
     `id`              INT         NOT NULL AUTO_INCREMENT,
     `card_number`     VARCHAR(16) NOT NULL,
@@ -117,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cards`
     INDEX `fk_cards_bank_account1_idx` (`bank_account_id` ASC) VISIBLE,
     CONSTRAINT `fk_cards_bank_account1`
         FOREIGN KEY (`bank_account_id`)
-            REFERENCES `mydb`.`bank_account` (`id`)
+            REFERENCES `bankingaccount`.`bank_account` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
