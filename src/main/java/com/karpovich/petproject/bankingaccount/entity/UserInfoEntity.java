@@ -1,9 +1,6 @@
 package com.karpovich.petproject.bankingaccount.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +8,7 @@ import java.util.Objects;
 public class UserInfoEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "first_name")
@@ -20,6 +18,11 @@ public class UserInfoEntity {
     private String lastName;
 
     public UserInfoEntity() {
+    }
+
+    public UserInfoEntity(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public long getId() {
@@ -32,6 +35,18 @@ public class UserInfoEntity {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
