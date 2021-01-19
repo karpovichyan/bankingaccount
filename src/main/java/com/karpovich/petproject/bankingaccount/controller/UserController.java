@@ -23,5 +23,4 @@ public class UserController {
     public List<UserEntity> findAll() {
         return userRepository.findAll();
     }
-
 }
