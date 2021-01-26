@@ -1,10 +1,11 @@
-package com.karpovich.petproject.bankingaccount.service;
+package com.karpovich.petproject.bankingaccount.service.impl;
 
 import com.karpovich.petproject.bankingaccount.dto.UserRegisterDto;
 import com.karpovich.petproject.bankingaccount.entity.UserEntity;
 import com.karpovich.petproject.bankingaccount.entity.UserInfoEntity;
 import com.karpovich.petproject.bankingaccount.exception.UserAlreadyExistException;
 import com.karpovich.petproject.bankingaccount.repository.UserRepository;
+import com.karpovich.petproject.bankingaccount.service.UserRegisterService;
 import org.springframework.stereotype.Service;
 
 @Service

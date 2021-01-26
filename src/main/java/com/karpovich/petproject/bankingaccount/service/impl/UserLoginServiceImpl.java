@@ -1,10 +1,11 @@
-package com.karpovich.petproject.bankingaccount.service;
+package com.karpovich.petproject.bankingaccount.service.impl;
 
 import com.karpovich.petproject.bankingaccount.dto.UserLoginDto;
 import com.karpovich.petproject.bankingaccount.entity.UserEntity;
 import com.karpovich.petproject.bankingaccount.exception.UserNotFoundException;
 import com.karpovich.petproject.bankingaccount.exception.WrongPasswordException;
 import com.karpovich.petproject.bankingaccount.repository.UserRepository;
+import com.karpovich.petproject.bankingaccount.service.UserLoginService;
 import org.springframework.stereotype.Service;
 
 @Service

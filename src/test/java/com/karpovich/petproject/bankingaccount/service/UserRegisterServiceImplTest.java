@@ -5,6 +5,7 @@ import com.karpovich.petproject.bankingaccount.entity.UserEntity;
 import com.karpovich.petproject.bankingaccount.entity.UserInfoEntity;
 import com.karpovich.petproject.bankingaccount.exception.UserAlreadyExistException;
 import com.karpovich.petproject.bankingaccount.repository.UserRepository;
+import com.karpovich.petproject.bankingaccount.service.impl.UserRegisterServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

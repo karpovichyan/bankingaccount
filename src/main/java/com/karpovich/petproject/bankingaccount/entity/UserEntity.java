@@ -2,6 +2,7 @@ package com.karpovich.petproject.bankingaccount.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -20,6 +21,10 @@ public class UserEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_info_id", referencedColumnName = "id")
     private UserInfoEntity userInfoEntity;
+
+    @OneToMany(mappedBy = "userEntity")
+    private Set<AccountEntity> accountEntities;
+
 
     public UserEntity(String email, String password, UserInfoEntity userInfoEntity) {
         this.email = email;
@@ -60,6 +65,14 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<AccountEntity> getAccountEntities() {
+        return accountEntities;
+    }
+
+    public void setAccountEntities(Set<AccountEntity> accountEntities) {
+        this.accountEntities = accountEntities;
     }
 
     @Override
