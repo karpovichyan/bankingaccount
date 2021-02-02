@@ -3,6 +3,7 @@ package com.karpovich.petproject.bankingaccount.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "bank_account")
@@ -22,6 +23,9 @@ public class AccountEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
+
+    @OneToMany(mappedBy = "accountEntity")
+    private Set<TransactionEntity> transactionEntitySet;
 
     public AccountEntity(BigDecimal balance, AccountType type, UserEntity userEntity) {
         this.balance = balance;
@@ -62,6 +66,14 @@ public class AccountEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+    }
+
+    public Set<TransactionEntity> getTransactionHistoryEntitySet() {
+        return transactionEntitySet;
+    }
+
+    public void setTransactionHistoryEntitySet(Set<TransactionEntity> transactionEntitySet) {
+        this.transactionEntitySet = transactionEntitySet;
     }
 
     @Override
