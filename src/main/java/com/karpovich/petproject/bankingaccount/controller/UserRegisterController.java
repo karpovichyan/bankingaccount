@@ -1,6 +1,6 @@
 package com.karpovich.petproject.bankingaccount.controller;
 
-import com.karpovich.petproject.bankingaccount.dto.UserRegisterDto;
+import com.karpovich.petproject.bankingaccount.dto.UserDetailsDto;
 import com.karpovich.petproject.bankingaccount.service.UserRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +19,7 @@ public class UserRegisterController {
     }
 
     @PostMapping
-    public void registerUser(@RequestBody UserRegisterDto userRegisterDto) {
-        userRegisterService.register(userRegisterDto);
+    public void registerUser(@RequestBody UserDetailsDto userDetailsDto) {
+        userRegisterService.register(userDetailsDto);
     }
 }

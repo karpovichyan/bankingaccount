@@ -1,6 +1,6 @@
 package com.karpovich.petproject.bankingaccount.service;
 
-import com.karpovich.petproject.bankingaccount.dto.UserRegisterDto;
+import com.karpovich.petproject.bankingaccount.dto.UserDetailsDto;
 import com.karpovich.petproject.bankingaccount.entity.UserEntity;
 import com.karpovich.petproject.bankingaccount.entity.UserInfoEntity;
 import com.karpovich.petproject.bankingaccount.exception.UserAlreadyExistException;
@@ -29,10 +29,10 @@ class UserRegisterServiceImplTest {
     @DisplayName("When user already exists in the database UserAlreadyExistException should be thrown")
     void userAlreadyExistExceptionShouldBeThrown() {
         //given
-        UserRegisterDto userRegisterDto = new UserRegisterDto("Yan", "Karpovich", "existmail@gmail.com", "123");
+        UserDetailsDto userDetailsDto = new UserDetailsDto("Yan", "Karpovich", "existmail@gmail.com", "123");
         given(userRepository.existsByEmail("existmail@gmail.com")).willReturn(true);
         //when/then
-        Assertions.assertThrows(UserAlreadyExistException.class, () -> userRegisterService.register(userRegisterDto));
+        Assertions.assertThrows(UserAlreadyExistException.class, () -> userRegisterService.register(userDetailsDto));
         verify(userRepository).existsByEmail("existmail@gmail.com");
         verify(userRepository, never()).save(any(UserEntity.class));
         verifyNoMoreInteractions(userRepository);
@@ -47,11 +47,11 @@ class UserRegisterServiceImplTest {
         String email = "karpovichjan@gmail.com";
         String password = "123";
 
-        UserRegisterDto userRegisterDto = new UserRegisterDto(firstName, lastName, email, password);
+        UserDetailsDto userDetailsDto = new UserDetailsDto(firstName, lastName, email, password);
         UserEntity expectedUserEntity = new UserEntity(email, password, new UserInfoEntity(firstName, lastName));
         given(userRepository.existsByEmail(email)).willReturn(false);
         //when
-        userRegisterService.register(userRegisterDto);
+        userRegisterService.register(userDetailsDto);
         //then
         verify(userRepository).existsByEmail(email);
         verify(userRepository).save(expectedUserEntity);

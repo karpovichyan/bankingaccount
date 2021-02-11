@@ -1,15 +1,15 @@
 package com.karpovich.petproject.bankingaccount.dto;
 
-public class UserRegisterDto {
+public class UserDetailsDto {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    public UserRegisterDto() {
+    public UserDetailsDto() {
     }
 
-    public UserRegisterDto(String firstName, String lastName, String email, String password) {
+    public UserDetailsDto(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
